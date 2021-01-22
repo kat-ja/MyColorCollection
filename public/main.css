@@ -1,0 +1,37 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 400;
+    font-size: small;
+}
+
+.container{
+    width: 75%;
+    margin: auto;
+}
+h1{
+    font: inherit;
+    font-size: xx-large;
+    font-weight: 700;
+    color: #2CC29D;
+}
+form{
+    margin-bottom: 0.5rem;
+}
+
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+}
+.grid__item{
+    border: solid 1px #0a0a0e;
+    display: flex;
+    align-items: center;
+    padding: 0.2rem;
+    margin: 0.2rem;
+}
+
+.grid__item__box{
+    margin-right: 0.2rem;
+}
