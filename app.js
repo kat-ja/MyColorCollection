@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 
+
 const app = express();
 
 const colors = require('./colors.json');
@@ -20,6 +21,7 @@ app.set('view engine', 'ejs');
 
 let nameOfColor = '';
 let valueOfColor = '';
+let listener = undefined;
 
 
 // routes
@@ -28,9 +30,12 @@ app.get('/', (req, res, next) => {
     res.render('colors', {
         colors: colors,
         colorName: nameOfColor,
-        colorValue: valueOfColor
+        colorValue: valueOfColor,
+        listener: listener
     });
 })
+
+
 
 // to do: append to json not write again? https://stackoverflow.com/questions/36856232/write-add-data-in-json-file-using-node-js
 app.post('/add-color', (req, res, next) => {
@@ -51,8 +56,17 @@ app.post('/add-color', (req, res, next) => {
     res.redirect('/');
    // console.log(colors);
 })
-// to do: delete route
-// how to implement delete option in ui?
-// colorful page title
+
+app.post('/delete', (req, res, next) => {
+    let delColor = req.body.colorValue;
+    for(let i in colors){
+        if(colors[i].value === delColor){
+            colors.splice(i, 1);
+        }
+    }
+    res.redirect('/');
+});
+
+
 
 app.listen(3000);

@@ -5,34 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/main.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;1,400;1,700&display=swap" rel="stylesheet">
+    
     
     <title>Colors</title>
 </head>
 <body>
     <div class="container">
         <h1 id="pageTitle">My Color Collection</h1>
-        <form action="/add-color" method="POST">
-            <label for="colorName">Color Name</label>
-            <input type="text" name="colorName" id="colorName"/>
-            <label for="colorvalue">Color Value</label>
-            <input type="text" name="colorValue" id="colorValue" />
-            <button type="submit">Submit</button>
+        <form action="/add-color" method="POST" class="add-color">
+            <label for="colorName">Color&hairsp;Name</label>
+            <input type="text" name="colorName" id="colorName" placeholder="any name" />
+            <label for="colorvalue">Color&hairsp;Value</label>
+            <input type="text" name="colorValue" id="colorValue" placeholder="hex value" />
+            <button type="submit" class="submit">Submit</button>
         </form>
+      
        <div class="grid">
         <% for (let i in colors) { %>
-            <div class="grid__item">
-                <svg width="30" height="30" class="grid__item__box">
-                    <rect width="30" height="30" style="fill:<%= colors[i].value %>; margin: 1rem" />
-                </svg>
-                <span><%= colors[i].color %></span>
-            </div>
+            <form action="/delete" method="POST">
+                <div class="grid__item">
+                    <svg width="60" height="60" class="grid__item__box">
+                        <rect width="60" height="60" style="fill:<%= colors[i].value %>; margin: 1rem" />
+                    </svg>
+                    <div class="grid__item__item">
+                        <span><%= colors[i].color %></span>
+                        <span><%= colors[i].value %></span>
+                        <input type="hidden" value="<%= colors[i].value %>" name="colorValue"/>
+                        <button type="submit" class="delete-btn">Delete</button>
+                    </div>  
+                </div>
+            </form>
+            
             
         <% } %>
        </div>
+       <div id="picker"></div>
+       <div>
+           <p>Color value: <span id="info"></span></p>
+        </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+    <script src="/listeners.js"></script>
 </body>
 </html>
