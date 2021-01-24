@@ -43,7 +43,9 @@ app.post('/add-color', (req, res, next) => {
     let nameOfColor = req.body.colorName;
     let valueOfColor = req.body.colorValue;
     let newColor = { color: nameOfColor, value: valueOfColor };
-    colors.push(newColor);
+    if(valueOfColor){
+        colors.push(newColor);
+    };
     let json = (JSON.stringify(colors));
     //console.log(json);
     fs.writeFile('colors.json', json, 'utf-8', err => {

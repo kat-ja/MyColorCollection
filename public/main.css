@@ -9,6 +9,18 @@ body{
     width: 75%;
     margin: auto;
 }
+.container__items{
+    display: flex;
+    
+}
+.container__items__left{
+    display: flex;
+    flex-direction: column;
+}
+.container__items__right{
+    display: flex;
+    flex-direction: column;
+}
 h1{
     font: inherit;
     font-size: xx-large;
